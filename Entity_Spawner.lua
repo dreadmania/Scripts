@@ -124,10 +124,11 @@ local Entities = {
 
 function Spawner:Spawn(Entity, ...)
 	local Args = {...}
-	local Found = table.find(Entities, Entity)
 	
-	if Found then
-		Found["Func"](unpack(Args))
+	for Name,List in pairs(Entities) do
+		if Name == Entity then
+			List["Func"](unpack(Args))
+		end
 	end
 end
 

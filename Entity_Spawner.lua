@@ -39,7 +39,7 @@ local Spawner = {}
 local Entities = {
 	Seek = {
 		Model = nil,
-		Func = function()
+		Func = function(Rooms, Kill)
 			local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
 
 			workspace.Ambience_Seek.TimePosition = 0
@@ -78,6 +78,7 @@ local Entities = {
 			firgur.SeekRig.AnimationController:LoadAnimation(anim):Play()
 
 			local chase = true
+			
 			coroutine.wrap(function()
 				while task.wait() do
 					if chase then
@@ -89,7 +90,11 @@ local Entities = {
 				end
 			end)()
 			
-			for i = 1,15 do
+			if Kill then
+				-- Not coded in yet
+			end
+			
+			for i = 1,Rooms do
 				for i,v in ipairs(workspace.CurrentRooms:GetChildren()) do
 					if tonumber(v.Name) < tonumber(early.Name) then continue end
 					if v:GetAttribute("lol") then continue end
@@ -125,3 +130,5 @@ function Spawner:Spawn(Entity, ...)
 		Found["Func"](unpack(Args))
 	end
 end
+
+return Spawner

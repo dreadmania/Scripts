@@ -125,7 +125,10 @@ local Entities = {
 function Spawner:Spawn(Entity, ...)
 	local Args = {...}
 	
+	print(Entity)
+	
 	for Name,List in pairs(Entities) do
+		print(Name)
 		if Name == Entity then
 			List["Func"](unpack(Args))
 		end
